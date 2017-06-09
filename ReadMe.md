@@ -1,5 +1,5 @@
 ###Enable SSL/HTTP1.1 on tomcat
-Let's say you have developer myApp and installed it on tomcat on port 8080 and you access it at [http://localhost:8080/myApp](http://localhost:8080/myApp)
+Let's say you have developer exampleApp and installed it on tomcat on port 8080 and you access it at [http://localhost:8080/exampleApp](http://localhost:8080/exampleApp)
 1. Create a keystore file to store the server's private key and self-signed certificate by executing the following command:
 ~~~~~
 $JAVA_HOME/bin/keytool -genkey -alias tomcat -keyalg RSA
@@ -20,7 +20,7 @@ and specify a password value of "changeit".
     </Connector>
 ~~~~~
 
-3. Restart the server and got o [https://localhost:8443/myApp](https://localhost:8443/myApp)
+3. Restart the server and got o [https://localhost:8443/exampleApp](https://localhost:8443/exampleApp)
 4. To Force your application to use SSL make sure to add following to your web.xml filr:
 ~~~~
 <security-constraint>
