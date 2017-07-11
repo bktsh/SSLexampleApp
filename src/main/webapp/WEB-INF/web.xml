@@ -27,17 +27,17 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>exampleApp Secure Stuff</web-resource-name>
-            <url-pattern>/*</url-pattern>
-            <!-- TODO You can add more URLs
-            <url-pattern>/*</url-pattern>
-            -->
-        </web-resource-collection>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
+    <!--<security-constraint>-->
+        <!--<web-resource-collection>-->
+            <!--<web-resource-name>exampleApp Secure Stuff</web-resource-name>-->
+            <!--<url-pattern>/*</url-pattern>-->
+            <!--&lt;!&ndash; TODO You can add more URLs-->
+            <!--<url-pattern>/*</url-pattern>-->
+            <!--&ndash;&gt;-->
+        <!--</web-resource-collection>-->
+        <!--<user-data-constraint>-->
+            <!--<transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+        <!--</user-data-constraint>-->
+    <!--</security-constraint>-->
 
 </web-app>

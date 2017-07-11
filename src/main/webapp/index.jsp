@@ -1,6 +1,9 @@
 <html>
 <body>
-    <h2>Hello World</h2>
-    <h3><a href="hello?name=HASHEM">Click here...</a></h3>
+<h2>Hello World</h2>
+<ul>
+    <li><a href="showVisible?name=HASHEM">Click here for Visible Captcha</a></li>
+    <li><a href="showInvisible?name=HASHEM">Click here for InVisible Captcha</a></li>
+</ul>
 </body>
 </html>
