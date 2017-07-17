@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.StringWriter;
 
 /**
  * Created on 7/11/17.
@@ -30,4 +31,7 @@ public class InvisibleCaptchaController extends BaseCaptchaController {
         view.addObject("nameOfApp", nameOfApp);
         return view;
     }
+
+
+
 }

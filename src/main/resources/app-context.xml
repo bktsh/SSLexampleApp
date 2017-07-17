@@ -1,0 +1,62 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.bktsh.practice.exampleapp.service"/>
+
+    <bean id="textTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolvers">
+            <set>
+                <ref bean="textTemplateResolver"/>
+            </set>
+        </property>
+    </bean>
+    <bean id="htmlTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+        <property name="templateResolvers">
+            <set>
+                <ref bean="htmlTemplateResolver"/>
+            </set>
+        </property>
+    </bean>
+
+    <bean id="textTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+        <property name="prefix" value="/email_templates/text/"/>
+        <property name="templateMode" value="TEXT"/>
+        <property name="suffix" value=".txt"/>
+        <property name="cacheable" value="false"/>
+    </bean>
+    <bean id="htmlTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
+        <property name="prefix" value="/email_templates/html/"/>
+        <property name="templateMode" value="HTML"/>
+        <property name="suffix" value=".html"/>
+        <property name="cacheable" value="false"/>
+    </bean>
+
+    <bean id="freeMarkerConfigurationFactoryBean" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <property name="templateLoaderPath" value="/email_templates/freemarker/"/>
+    </bean>
+
+    <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.server.host}"/>
+        <property name="port" value="${mail.server.port}"/>
+        <property name="protocol" value="${mail.server.protocol}"/>
+        <property name="username" value="${mail.server.username}"/>
+        <property name="password" value="${mail.server.password}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.auth">${mail.smtp.auth}</prop>
+                <prop key="mail.smtp.starttls.enable">${mail.smtp.starttls.enable}</prop>
+                <prop key="mail.smtp.quitwait">${mail.smtp.quitwait}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <context:property-placeholder location="classpath:application.properties,mail.properties"/>
+
+</beans>
