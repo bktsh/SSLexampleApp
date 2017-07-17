@@ -20,7 +20,7 @@ public class FreemarkerEmailSenderTest {
 
     @org.junit.Test
     public void sendFreemarkerMail() throws Exception {
-        boolean result = subject.sendFreemarkerEmail("Hashem_Baktash@anfcorp.com", "Hashem_Baktash@anfcorp.com", "TEST", "This is a test");
+        boolean result = subject.sendFreemarkerEmail("Hashem_Baktash@mycompany.com", "Hashem_Baktash@mycompany.com", "TEST", "This is a test");
         assertThat(result).isTrue();
     }
 

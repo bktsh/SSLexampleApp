@@ -20,21 +20,21 @@ public class ThymeleafEmailSenderTest {
 
     @org.junit.Test
     public void sendMail() throws Exception {
-        boolean result = subject.sendMail("Hashem_Baktash@anfcorp.com", "Hashem_Baktash@anfcorp.com", "TEST", "This is a test");
+        boolean result = subject.sendMail("Hashem_Baktash@mycompany.com", "Hashem_Baktash@mycompany.com", "TEST", "This is a test");
         assertThat(result).isTrue();
     }
 
 
     @org.junit.Test
     public void sendTextMail() throws Exception {
-        boolean result = subject.sendTextMail("Hashem_Baktash@anfcorp.com", "Hashem_Baktash@anfcorp.com", "TEST", "This is a test");
+        boolean result = subject.sendTextMail("Hashem_Baktash@mycompany.com", "Hashem_Baktash@mycompany.com", "TEST", "This is a test");
         assertThat(result).isTrue();
     }
 
 
     @org.junit.Test
     public void sendHtmlMail() throws Exception {
-        boolean result = subject.sendHtmlMail("Hashem_Baktash@anfcorp.com", "Hashem_Baktash@anfcorp.com", "TEST", "This is a test");
+        boolean result = subject.sendHtmlMail("Hashem_Baktash@mycompany.com", "Hashem_Baktash@mycompany.com", "TEST", "This is a test");
         assertThat(result).isTrue();
     }
 
