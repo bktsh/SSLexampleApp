@@ -1,25 +1,18 @@
 package com.bktsh.practice.exampleapp.service;
 
 import freemarker.template.Configuration;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created on 7/11/17.
@@ -49,7 +42,7 @@ public class FreemarkerEmailSender {
             this.javaMailSender.send(preparator);
             System.out.println("Message has been sent.............................");
         }
-        catch (MailException ex) {
+        catch (Exception ex) {
             System.err.println(ex.getMessage());
             ex.printStackTrace();
             return false;
@@ -70,6 +63,7 @@ public class FreemarkerEmailSender {
 
                 Map<String, Object> model = new HashMap<String, Object>();
                 model.put("order", content);
+                model.put("link", "http://www.google.com");
 
                 String text = geFreeMarkerTemplateContent(model);//Use Freemarker or Velocity
                 System.out.println("Template content : "+text);

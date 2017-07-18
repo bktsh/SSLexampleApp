@@ -1,51 +1,53 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                             http://www.springframework.org/schema/context
-                            http://www.springframework.org/schema/context/spring-context.xsd">
+                            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:property-placeholder location="classpath*:application.properties,
-                                                      test-mail.properties"/>
+    <context:property-placeholder location="classpath*:application.properties,classpath:test-mail.properties"/>
 
-    <context:component-scan base-package="com.bktsh.practice.exampleapp.service"/>
+    <context:component-scan base-package="com.bktsh.practice.exampleapp"/>
+    <!--Required for global exception handling-->
+    <mvc:annotation-driven/>
 
     <bean id="textTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
-                <ref bean="textTemplateResolver" />
+                <ref bean="textTemplateResolver"/>
             </set>
         </property>
     </bean>
     <bean id="htmlTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolvers">
             <set>
-                <ref bean="htmlTemplateResolver" />
+                <ref bean="htmlTemplateResolver"/>
             </set>
         </property>
     </bean>
 
     <bean id="textTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
-        <property name="prefix" value="/email_templates/text/" />
-        <property name="templateMode" value="TEXT" />
+        <property name="prefix" value="/email_templates/text/"/>
+        <property name="templateMode" value="TEXT"/>
         <property name="suffix" value=".txt"/>
         <property name="cacheable" value="false"/>
     </bean>
     <bean id="htmlTemplateResolver" class="org.thymeleaf.templateresolver.ClassLoaderTemplateResolver">
-        <property name="prefix" value="/email_templates/html/" />
-        <property name="templateMode" value="HTML" />
+        <property name="prefix" value="/email_templates/html/"/>
+        <property name="templateMode" value="HTML"/>
         <property name="suffix" value=".html"/>
         <property name="cacheable" value="false"/>
     </bean>
 
-    <bean id="freeMarkerConfigurationFactoryBean" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+    <bean id="freeMarkerConfigurationFactoryBean"
+          class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
         <property name="templateLoaderPath" value="/email_templates/freemarker/"/>
     </bean>
 
     <bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="${mail.server.host}"/>
-        <property name="javaMailProperties" >
+        <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
                 <prop key="mail.debug">true</prop>

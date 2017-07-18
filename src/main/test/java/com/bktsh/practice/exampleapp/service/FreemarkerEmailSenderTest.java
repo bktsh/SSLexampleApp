@@ -1,5 +1,6 @@
 package com.bktsh.practice.exampleapp.service;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,7 +19,7 @@ public class FreemarkerEmailSenderTest {
     FreemarkerEmailSender subject;
 
 
-    @org.junit.Test
+    @Test
     public void sendFreemarkerMail() throws Exception {
         boolean result = subject.sendFreemarkerEmail("Hashem_Baktash@mycompany.com", "Hashem_Baktash@mycompany.com", "TEST", "This is a test");
         assertThat(result).isTrue();

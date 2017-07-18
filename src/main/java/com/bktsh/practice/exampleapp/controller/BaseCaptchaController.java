@@ -39,15 +39,11 @@ public class BaseCaptchaController {
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setDoOutput(true);
         urlConnection.setRequestMethod("POST");
-        urlConnection.setRequestProperty(
-                "Content-Type", "application/x-www-form-urlencoded");
-        urlConnection.setRequestProperty(
-                "charset", StandardCharsets.UTF_8.displayName());
-        urlConnection.setRequestProperty(
-                "Content-Length", Integer.toString(postData.length()));
+        urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        urlConnection.setRequestProperty("charset", StandardCharsets.UTF_8.displayName());
+        urlConnection.setRequestProperty("Content-Length", Integer.toString(postData.length()));
         urlConnection.setUseCaches(false);
-        urlConnection.getOutputStream()
-                .write(postData.getBytes(StandardCharsets.UTF_8));
+        urlConnection.getOutputStream().write(postData.getBytes(StandardCharsets.UTF_8));
         JSONTokener jsonTokener = new JSONTokener(urlConnection.getInputStream());
         return new JSONObject(jsonTokener);
     }

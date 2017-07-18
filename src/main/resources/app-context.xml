@@ -7,6 +7,7 @@
                             http://www.springframework.org/schema/context/spring-context.xsd">
 
     <context:component-scan base-package="com.bktsh.practice.exampleapp.service"/>
+    <context:property-placeholder location="classpath:application.properties,classpath:mail.properties"/>
 
     <bean id="textTemplateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
         <property name="templateResolvers">
@@ -56,7 +57,5 @@
             </props>
         </property>
     </bean>
-
-    <context:property-placeholder location="classpath:application.properties,mail.properties"/>
 
 </beans>
